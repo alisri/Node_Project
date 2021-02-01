@@ -1,0 +1,56 @@
+<%- include('header'); -%>
+
+<div class="container">
+<div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+    <h2 id="object">ارسال پیام</h2>
+    <div class="btn-group">
+            <a href="/home" class="btn btn-sm btn-danger">صفحه اصلی</a>
+        </div>
+</div>
+<form class="form-horizontal" action="/report" method="post">
+    <% if(errors.length>0) { %>
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span>×</span>
+            </button>                            
+            <% errors.forEach(error=>{ %>
+                <%= error %> <br>
+            <% }) %>
+        </div>
+        <% } %>
+        <% if(message.length>0) { %>
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span>×</span>
+                </button>                            
+                <%= message %>
+            </div>
+            <% } %>
+    <div class="form-group row">
+                <div class="col">
+                    <label for="title" class="control-label font-weight-bold">نام </label>
+                    <input type="text" class="form-control" name="name" id="name" placeholder="نام را وارد کنید" value="">
+                </div>
+            </div>
+    <div class="form-group row">
+        <div class="col">
+            <label for="title" class="control-label font-weight-bold">موضوع</label>
+            <input type="text" class="form-control" name="title" id="title" placeholder="موضوع را وارد کنید" value="">
+        </div>
+    </div>
+    <div class="form-group row">
+      <div class="col">
+          <label for="body" class="control-label font-weight-bold">متن</label>
+          <textarea rows="5" class="form-control" name="body" id="body" placeholder="پیام را وارد کنید"></textarea>
+      </div>
+    </div>
+    <div class="form-group row">
+        <div class="col">
+            <button type="submit" class="btn btn-danger">ارسال</button>
+        </div>
+    </div>
+</div>
+</form>
+</div>
+
+<%- include('footer'); -%>

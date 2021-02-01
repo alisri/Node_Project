@@ -1,0 +1,43 @@
+<%- include('header'); -%>
+<div class="container">
+<div class="d-flex justify-content-between align-items-center mb-3 border-bottom-1">
+        <h2 id="object">شکایات</h2>
+        <div class="btn-group">
+                <a href="/home/new" class="btn btn-sm btn-danger">ثبت شکایت جدید</a>
+                <a href="/home/" class="btn btn-sm btn-info">بازگشت</a>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered ">
+            <thead>
+            <tr>
+                <th>شاکی</th>
+                <th>عنوان شکایت</th>
+                <th>بخش مربوطه</th>
+                <th>متن شکایت</th>
+            </tr>
+            </thead>
+            <tbody>
+                <% comments.docs.forEach(comment=> { if(comment.user.id == name) { %>
+                    <tr>
+                        <td><%= comment.user.username %></td>
+                        <td><%= comment.title %></td>
+                        <td>
+                            <%= comment.typeToPersian() %>
+                        </td>
+                        <td>
+                            <!-- <form action="/home/list/<%= comment._id %>?_method=DELETE" method="post">
+                                <input type="hidden" name="_method" value="delete"> -->
+                                <div class="btn-group btn-group-sm">
+                                    <a href="/home/list/<%= comment._id %>">متن شکایت</a>
+                                </div>
+                            <!-- </form> -->
+                        </td>
+                    </tr>
+                    <%  }}) %>
+            </tbody>
+        </table>
+        <%- include(viewPath('layouts/pagination'), {pagination : comments.pages, page : comments.page}) %>
+    </div>    
+</div>
+<%- include('footer'); -%>

@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="نمایشport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><%= title  %></title>
+    <link rel="shortcut icon" href="/css/favicon.ico"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-rtl.min.css">
+    <link rel="stylesheet" href="/css/vazir.css">
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+  <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/home">سامانه ثبت شکایات</a>
+    <ul class="navbar-nav px-3">
+      <li class="nav-item text-nowrap">
+        <a class="nav-link" href="/">خروج</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      
+        <main role="main" class="col-md-9 mr-sm-auto col-lg-10 pt-3 px-4">
+            <div class="d-flex justify-content-between align-items-center mb-3 border-bottom-1">
+                <h2>اعضا</h2>
+                <!-- <div class="btn-group">
+                    <a href="/admin/episodes/create" class="btn btn-sm btn-primary">افزودن جلسه جدید</a>
+                    <a href="/admin/courses" class="btn btn-sm btn-danger"></a>
+                </div> -->
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th>نام کاربری</th>
+                        <th>شماره دانشجویی</th>
+                        <th>شکایات</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                            <% users.docs.forEach(user=> {   %>
+                                <tr>
+                                    <td><%= user.username %></td>
+                                    <td><%= user.name %></td>
+                                    <td><a href="/admin/members/<%= user._id %>">شکایات</a></td>
+                                </tr>
+                                <%  }) %>
+                        </tbody>
+                </table>
+            </div>
+            
+            
+        </main>
+
+ 
+
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column el">
+              <li class="nav-item">
+                <a class="nav-link" href="/admin">
+                  <span data-feather="home"></span>
+                  داشبورد
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/admin/members">
+                  <span data-feather="file"></span>
+                  اعضا
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/admin/list">
+                  <span data-feather="users"></span>
+                  شکایات بررسی نشده
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/admin/list/checked">
+                  <span data-feather="users"></span>
+                  شکایات بررسی شده
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/admin/reports">
+                  <span data-feather="bar-chart-2"></span>
+                  گزارشات
+                </a>
+              </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/importUsers">
+                        <span data-feather="users"></span>
+                        وارد کردن لیست دانشجو
+                    </a>
+                </li>
+            </ul>
+          </div>
+        </nav>
+
+    </div>
+  </div>
+
+
+  <script src="/js/jquery-3.2.1.slim.min.js"></script>
+  <script src="/js/popper.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/holder.min.js"></script>
+
+  <!-- Icons -->
+  <script src="/js/feather.min.js"></script>
+  <script>
+    feather.replace()
+  </script>
+</body>
+</html> 

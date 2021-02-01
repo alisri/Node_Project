@@ -1,0 +1,81 @@
+<%- include('header'); -%>
+<div class="container">
+<div class="d-flex justify-content-between align-items-center mb-3 border-bottom-1">
+        <h2 id="object">شکایات</h2>
+        <div class="btn-group">
+                <a href="/home/new" class="btn btn-sm btn-danger">ثبت شکایت جدید</a>
+                <a href="/home/list" class="btn btn-sm btn-info">بازگشت</a>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead>
+            <tr>
+                <th>شاکی</th>
+                <th>عنوان شکایت</th>
+                <th>بخش مربوطه</th>
+            </tr>
+            </thead>
+            <tbody>
+                <% comments.docs.forEach(comment=> { if(comment.user.id == userId && comment._id == param) { %>
+                    <tr>
+                        <td><%= comment.user.username %></td>
+                        <td><%= comment.title %></td>
+                        <td>
+                            <%= comment.typeToPersian() %>
+                        </td>
+                    </tr>
+                    <%  }}) %>
+            </tbody>
+        </table>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th>متن شکایت</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <% comments.docs.forEach(comment=> { if(comment.user.id == userId && comment._id == param) { %>
+                        <tr>
+                            <td>
+                                <%= comment.body %>
+                            </td>
+                        </tr>
+                        <%  }}) %>
+                </tbody>
+            </table>
+        </table>
+        <% comments.docs.forEach(comment=> { if(comment.user.id == userId && comment._id == param) { %>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th>
+                            <% if(comment.checked) { %>
+                                پاسخ داده شده به اعتراض شما:
+                                <% }else { %>
+                                    وضعیت اعتراض:
+                                    <% }%>
+
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                    
+                        <tr>
+                            <td>
+                                <% if(comment.checked) { %>
+                                <%= comment.respond %>
+                                <% }else { %>
+                                    اعتراض در انتظار بررسی می باشد
+                                    <% }%>
+                            </td>
+                        </tr>
+                        <%  }}) %>
+                </tbody>
+            </table>
+        <%- include(viewPath('layouts/pagination'), {pagination : comments.pages, page : comments.page}) %>
+    </div>    
+</div>
+<%- include('footer'); -%>

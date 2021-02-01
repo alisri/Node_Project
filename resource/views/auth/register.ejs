@@ -1,0 +1,50 @@
+<%- include('./../header'); -%>
+
+<div class="container">
+<!--    <div id="particles-js"></div>-->
+
+    <div class="row pt-5 justify-content-center">
+        <div class="col-8">
+            <div class="card card-default shadow bg-white rounded">
+                <div class="card-header"><h5>عضویت در سامانه</h5></div>
+                <div class="card-body">
+                    <form class="form-horizontal" method="POST" action="/register" novalidate>
+
+                        <% if(errors.length > 0) { %> 
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span>×</span>
+                            </button>                            
+                            <% errors.forEach(error => { %>
+                                <%= error %><br>
+                            <% }) %>
+                        </div>
+                        <% } %>
+                        
+                        <div class="form-group">
+                            <label for="name" class="control-label">شماره دانشجویی:</label>
+                            <input id="name" type="text" class="form-control" name="name" value="" required autofocus="">
+                        </div>
+
+                        <div class="form-group">
+                                <label for="name" class="control-label">نام کاربری:</label>
+                                <input id="username" type="text" class="form-control" name="username" value="" required>
+                            </div>
+
+                        <div class="form-group">
+                            <label for="password" class="control-label">پسورد</label>
+                            <input id="password" type="password" class="form-control" name="password" required="">
+                        </div>
+
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-danger">ثبت نام</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('./../footer'); -%>

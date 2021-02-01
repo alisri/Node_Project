@@ -1,0 +1,59 @@
+<%- include('header'); -%>
+
+<div class="container">
+<div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+    <h2 id="object">ثبت شکایت</h2>
+    <div class="btn-group">
+            <a href="/home" class="btn btn-sm btn-danger">صفحه اصلی</a>
+            <a href="/home/list" class="btn btn-sm btn-info">شکایات</a>
+        </div>
+</div>
+<form class="form-horizontal" action="/home/new/" method="post">
+    <% if(errors.length>0) { %>
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span>×</span>
+            </button>                            
+            <% errors.forEach(error=>{ %>
+                <%= error %> <br>
+            <% }) %>
+        </div>
+        <% } %>
+    <div class="form-group row">
+        <div class="col">
+            <label for="title" class="control-label font-weight-bold">موضوع</label>
+            <input type="text" class="form-control" name="title" id="title" placeholder="موضوع را وارد کنید" value="">
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col">
+            <label for="type" class="control-label font-weight-bold font-weight-bold">بخش مربوطه</label>
+            <select name="type" id="type" class="form-control">
+                <option value="" disabled selected>انتخاب کنید</option>
+                <option value="food">سالن غذا خوری</option>
+                <option value="training">سالن ورزش</option>
+                <option value="wc">سرویس بهداشتی</option>
+                <option value="educational">واحد آموزش</option>
+                <option value="finance">بخش مالی</option>
+                <option value="boss">مدیریت</option>
+                <option value="culture">بخش فرهنگی</option>
+                <option value="herasat">بخش حراست</option>
+                <option value="others">غیره</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+      <div class="col">
+          <label for="body" class="control-label font-weight-bold">متن</label>
+          <textarea rows="5" class="form-control" name="body" id="body" placeholder="متن اعتراض را وارد کنید"></textarea>
+      </div>
+    </div>
+    <div class="form-group row">
+        <div class="col">
+            <button type="submit" class="btn btn-danger">ارسال</button>
+        </div>
+    </div>
+</form>
+</div>
+
+<%- include('footer'); -%>
